@@ -44,4 +44,21 @@ class Application(object):
         return resp
 
 
+def run_app(app, host='0.0.0.0', port=8888):
+    loop = app.loop
+
+    handler = app.make_handler()
+
+    srv = loop.run_until_complete(loop.create_server(handler, host, port))
+
+    try:
+        loop.run_forever()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        srv.close()
+        loop.run_until_complete(srv.wait_closed())
+    loop.close()
+
+
 

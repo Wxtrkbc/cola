@@ -9,7 +9,7 @@ class RequestHandler(ServerHttpProtocol):
 
         self._server = server
         self._handler = server.handler
-        self._request = server.request
+        self._request_factory = server.request
 
     def connection_made(self, transport):
         super().connection_made(transport)
@@ -19,13 +19,14 @@ class RequestHandler(ServerHttpProtocol):
         self._server.connection_lost(self, exc)
 
         super().connection_lost(exc)
-        self._request = None
+        self._request_factory = None
         self._server = None
         self._handler = None
 
     async def handle_request(self, message, payload):
         self._server.request_count += 1
-        request = self._request(message, payload, self)
+        request = self._request_factory(message, payload, self)
+        self._request = request
 
         try:
             resp = await self._handler(request)
