@@ -5,13 +5,6 @@ from .server import Server
 from .request import Request
 
 
-# def run_app(host='127.0.0.1', port=8080, ssl=None, backlog=100):
-#     loop = asyncio.get_event_loop()
-#     server = loop.create_server(host, port, ssl=ssl, backlog=backlog)
-#     loop.run_until_complete(server)
-#     loop.run_forever()
-
-
 class Application(object):
 
     def __init__(self, loop=None, router=None):
