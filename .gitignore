@@ -34,6 +34,11 @@ reports/
 # ssh key file
 id_rsa
 
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
 
 # Installer logs
 pip-log.txt
@@ -47,6 +52,8 @@ htmlcov/
 .venv
 .secret_key_store
 
+# PyBuilder
+target/
 
 # Pycharm settings
 .idea
@@ -61,11 +68,23 @@ htmlcov/
 # vi/vim temp file
 *.swp
 
+# sqlite database
+*.sqlite3
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Windows folder config file
+Desktop.ini
 
 # MAC OSX
 .DS_Store
 .AppleDouble
 .LSOverride
+
+# local settings
+local_settings.py
 
 # docker
 Dockerfile
